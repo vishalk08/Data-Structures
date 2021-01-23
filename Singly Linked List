@@ -1,0 +1,76 @@
+// Single Linked List
+//libraries
+#include <stdio.h>
+#include <stdlib.h>
+//Structure of a node
+struct node{
+    int data;
+    struct node * link;
+};
+//Declare nodes as NULL to avoid dangling pointer
+struct node * head=NULL;
+struct node * current=NULL;
+struct node *ptr;
+
+//function to create a node
+void createNode(int inpdata){
+    //Allocate memory using malloc and return address
+    struct node * current=malloc(sizeof(struct node));
+    current->data=inpdata;
+    current->link=NULL;
+    //if empty
+    if(head==NULL){
+        head=current;
+    }
+    //if list is not empty
+    else{
+        ptr=head;
+        while(ptr->link!=NULL){
+            ptr=ptr->link;
+        }
+        ptr->link=current;
+    }
+}
+
+//function to print values
+void printN(){
+    ptr=head;
+    while(ptr->link!=NULL)
+        {
+            printf("%d ",ptr->data);
+            ptr=ptr->link;
+        }
+        printf("%d",ptr->data);
+}
+
+//function to delete a node
+void deleteNode(){
+    ptr=head;
+    while(ptr->link!=NULL)
+    {
+        current=ptr;
+        ptr=ptr->link;
+    }
+    current->link=NULL;
+    printf(" del ");
+}
+//Delete at beginning
+void dB(){
+    ptr=head;
+    head=head->link;
+    printf(" DelB ");
+    free(ptr);
+}
+//main function
+int main()
+{
+    createNode(15); //add node with value 15
+    createNode(20);//add node with value 20
+    createNode(10);//add node with value 10
+    createNode(22);//add node with value 22
+    printN();
+    deleteNode(); //delete last node (22)
+    dB(); //delete first node(15)
+    printN(); //print values
+    return 0;
+}
