@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main()
+{
+    int a=10,b=5;
+    //bitwise XOR operator
+    a=a^b; //a=15
+    b=a^b; //b=10
+    a=b^a; //a=5
+    printf("%d %d", a,b);
+}
