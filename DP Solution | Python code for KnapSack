@@ -1,0 +1,31 @@
+#Wrote this code with the help of YT channel "CSDOJO"
+#recursive function
+def ks(n,c):
+    #If the value of KS(n,c) is stored return result else goto next if
+    if arr[n][c]!=None:
+        result=arr[n][c]
+    #if capacity or n is 0 
+    if(n==0 or c==0):
+        result=0
+        
+    elif w[n]>c:
+     result=ks(n-1,c)
+     
+    else:
+        t1=ks(n-1,c)
+        t2=v[n]+ks(n-1,c-w[n])
+        result=max(t1,t2)
+        
+    #storing result in an array
+    arr[n][c]=result
+    return result
+    
+n=4
+w=[2,3,5,7] #weights
+v=[1,2,3,4] #values
+c=10
+#declare array to store repeating values
+
+arr = [ [ None for y in range( 15 ) ] for x in range( 15) ]
+
+print(ks(n-1,c))      #print
